@@ -1,0 +1,33 @@
+---
+---
+
+@import "minima";
+
+.site-header {
+  background-color: darkgrey;
+  border-top: 5px solid darkgrey;
+}
+
+.site-title, .site-title:visited {
+  color: white;  
+}
+
+.site-title:hover, .site-title:visited:hover {
+  color:#ED3993;
+}
+
+.site-nav .page-link {
+  color:white;
+}
+
+.site-nav .page-link:hover {
+  color: #ED3993;
+}
+
+a, a:visited {
+  color: #ED3993;
+}
+
+p.rss-subscribe {
+  visibility: hidden;
+}
