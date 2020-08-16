@@ -56,7 +56,7 @@ If I run a search with a byebug in my controller action and in my model method y
 
 ![terminal screenshot](/cautious-coder/assets/search_in_rails_byebug_image.png)
 
-The following resources were incredibly helpful for me while putting this together:
+The following resources were incredibly helpful while putting this together:
 
 [Simple Search Form in Rails by Yassi Mortensen](https://medium.com/@yassimortensen/simple-search-form-in-rails-8483739e4042)
 
