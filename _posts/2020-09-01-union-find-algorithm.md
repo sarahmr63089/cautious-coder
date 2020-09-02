@@ -158,7 +158,7 @@ The code below is the one pass option.
 
 This last improvement is the most efficient, taking what was a quadratic, unscalable solution (the UnionFind class) to a linear solution. 
 
-Working through the lessons and videos about this alogrithm was difficult. It's been a while since I worked with higher-level math and wrapping my brain around the efficiency of these solutions took a long time. It helped to go through the solutions on CodePen and create visuals to better understand each improvement.
+Working through the lessons and videos about this algorithm was difficult. It's been a while since I worked with higher-level math and wrapping my brain around the efficiency of these solutions took a long time. It helped to go through the solutions on CodePen and create visuals to better understand each improvement.
 
 Source:
 [Princeton University, Algorithms Part I, taught by Robert Sedgewick and Kevin Wayne](https://www.coursera.org/learn/algorithms-part1)
