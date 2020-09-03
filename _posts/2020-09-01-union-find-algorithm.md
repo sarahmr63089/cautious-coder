@@ -1,10 +1,12 @@
 ---
 layout: post
-title: Union Find Algorithm
+title: Union Find Algorithm Part I
 date: 2020-09-01 15:41:38 -0400
 author: Sarah
 ---
-Earlier this summer, I tried to balance working through an algorithms course with my bootcamp workload. SAY THE COURSE HERE Ultimately, that turned out to be too much to balance, but before I dropped the algorithms course I watched the videos on Union Find. This algorithm finds or creates a connection between two objects. When considering the problem, we can look at the connections in a few different ways:
+Earlier this summer, I tried to balance an algorithms course and my bootcamp workload. I chose Princeton's Algorithms Part I with Robert Sedgewick and Kevin Wayne, which can be found on Coursera. Ultimately, that turned out to be too much to balance, but before I dropped the algorithms course I watched the videos on Union Find. This blog post (and Part II) works through the code presented in those lectures (originally written in Java, but I've written in out in Javascript for my own comfort). 
+
+The Union Find algorithm (also called Disjoint Set) finds or creates a connection between two objects. When considering the problem, we can look at the connections in a few different ways:
 
   - reflexive: p is connected to p 
   - symmetric: if p is connected to q then q is connected to p
@@ -16,7 +18,7 @@ There are different ways to approach this problem and I will cover two with the 
 
 ### Quick Find
 
-Below, I've created a class QuickFind which is instantiated with an ids (named 'ids') of integers of size num. The class contains class methods 'connected' and 'union.' The connected method checks if indexes p and q are in the same group by checking if they point to the same value in ids. The union method joins two integers by changing all the values that match ids[p] to the value of ids[q].
+Below, I've created a class 'QuickFind' which is initialized with an array (named 'ids') of objects of size num. Each object in ids begins as its own group, with their initial group id being themself (in the examples below this is their index). The class contains class methods 'connected' and 'union.' The connected method checks if the objects at indexes p and q are in the same group by checking if they point to the same group id in ids. The union method joins two objects by changing all the group ids that match ids[p] to the group id of ids[q].
 
 {% highlight javascript %}
 class QuickFind {
@@ -47,13 +49,39 @@ class QuickFind {
   }
 }
 
-let ids = new QuickFind(10)
+let newIds = new QuickFind(10)
+
+newIds.ids
+// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+newIds.connected(2, 5)
+// false
+
+newIds.union(2, 5)
+
+newIds.ids
+// [0, 1, 5, 3, 4, 5, 6, 7, 8, 9]
+
+newIds.union(7, 2)
+
+newIds.ids
+// [0, 1, 5, 3, 4, 5, 6, 5, 8, 9]
+
+newIds.union(2, 8)
+
+newIds.ids
+// [0, 1, 8, 3, 4, 8, 6, 8, 8, 9]
+
+newIds.connected(2, 8)
+// true
 
 ADD SOME METHOD EXAMPLES
 
 {% endhighlight %}
 
-After putting together this class I tested out some code in CodePen and created some visuals. We can represent an array of 10 objects where each object is initialized with its own group id, here their index number.
+After putting together this class I tested out some code in CodePen. Below the class are some of the tests I ran in the CodePen console. First, I asked the console for the original array and checked two random objects (2 and 5) for a connection. Then I created a union between these two objects. After the union I re-printed the array and 2's group id was changed to 5 to signal their connection. I think created a few more unions and ended by joining 2 and 8. The final array shows that the group ids for indexes 2, 5, 7 and 8 all match meaning they are all in the same group.
+
+To further cement this concept, I decided to create some visuals with a site called 'Creately.' Below, I've represented an array of 10 objects in which each object is initialized with its own group id, here their index number.
 
 ![initial setup](/cautious-coder/assets/Initial-Setup.png)
 
@@ -65,23 +93,19 @@ When a union is created between 3 and 7 all objects that match the group id of i
 
 ![union find visuals--2](/cautious-coder/assets/UnionFindIMg.png)
 
-The downside to this solution is that it's too slow--it has two loops that go through the whole array when searching for unions, and creating unions runs in quadratic time, which does not scale. With large amounts of data this solution could take years of computer time.
+Unfortunately, this is not the most efficient way to approach this problem. The downside is that it's too slow--it has two for loops that go through the whole array, and creating unions runs in quadratic time, which does not scale. With large amounts of data this solution could take years of computer time.
 
 ### Quick Union
 
-A moderate improvement on Quick Find is Quick Union. The QuickUnion class is also instantiated with an array 'ids' of size num and has class methods 'connected' and 'union.' The key difference with this solution is how we represent the groups of joined objects. They are represented hierarchically, similar to a tree. 
-
-EXPLAIN HOW EACH NODE REFERENCES ITS PARENT
-
-If we create a union between 2 and 6 and then another union between 6 and 9, we get an array with one 3-part component. 
+A moderate improvement on Quick Find is Quick Union. The QuickUnion class is also initialized with an array 'ids' of size num and has class methods 'connected' and 'union.' The key difference with this solution is how we represent the groups of joined objects. They are represented hierarchically, similar to a tree. Instead of all the objects having the same group id, each object points to its parent until the root object is reached (the root points to itself). For example, if we create a union between 2 and 6 and then another union between 6 and 9, we get an array with one 3-part component. When we go to ids[2] we are directed to go to its parent at ids[6]. When we go to ids[6], we are directed to its parent at ids[9]. ids[9] points to itself and we know we've found the root of this tree.
 
 ![quick union one way](/cautious-coder/assets/QuickUnion.png)
 
-If we try to find the root starting at 2, we are pointed to 6, then to 9 which is the root. This component can also be visualized this way:
+This component can also be visualized this way where the parent is the number on the left and the object itself is on the right.
 
 ![quick union second way](/cautious-coder/assets/quickunion2.png)
 
-The findRoot method finds and returns the root of a tree at a given index. The root is where the value at i is the same as the index. The connected method uses findRoot to check if p and q are in the same component and the union method uses findRoot to join p and q by giving the root of p the root of q.
+In the QuickUnion class most of the code from QuickFind is duplicated, with the biggest change being findRoot method. This method finds and returns the root of a tree at a given index. The root is where ids[i] is the same as the index i. The connected method uses findRoot to check if p and q are in the same component and the union method uses findRoot to join p and q by giving the p's root the root of q.
 
 {% highlight javascript %}
 class QuickUnion {
@@ -103,14 +127,14 @@ class QuickUnion {
   }
 
   // checks whether p and q are in the same component 
-  by checking to see if they have the same root
+  // by checking to see if they have the same root
 
   connected = (p, q) => {
     return this.findRoot(p) === this.findRoot(q);
   }
 
   // connects p and q by making the root of p 
-  have the root of q as its parent
+  // have the root of q as its parent
 
   union = (p, q) => {
     let i = this.findRoot(p);
@@ -119,117 +143,39 @@ class QuickUnion {
   }
 }
 
-let ids = new QuickUnion(10)
+let newIds = new QuickUnion(10)
 
-ADD CODE EXAMPLES
-{% endhighlight %}
+newIds.ids
+// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-This isn't the most efficient solution, either, as the trees can get too tall, but it can be improved in a couple different ways.
+newIds.connected(2, 5)
+// false
 
-### Quick Union Improvement 1: Weighted
+newIds.union(2, 5)
 
-One way that the previous solution can be improved is by taking into account the size of the trees. With this improvement each instance of weighted quick union is initialized with a "size" array that tracks the size of each group. Then in the union method there is an if statement that checks which tree is larger before joining them. The smaller tree is always added to the bigger tree. 
+newIds.ids
+// [0, 1, 5, 3, 4, 5, 6, 7, 8, 9]
 
-{% highlight javascript %}
+newIds.union(7, 2)
 
-  // initialize with an array that shows the size of each group at it's index
-  constructor(num) {
-    this.ids = [];
-    this.size = [];
+newIds.ids
+// [0, 1, 5, 3, 4, 5, 6, 5, 8, 9]
 
-    for (let i = 0; i < num; i++){
-      this.ids.push(i)
-      this.size.push(0)
-    }
-  }
+newIds.union(2, 8)
 
-  union = (p, q) => {
-    let i = this.findRoot(p);
-    let j = this.findRoot(q);
+newIds.ids
+// [0, 1, 5, 3, 4, 8, 6, 5, 8, 9]
 
-    if ( i === j) {
-      return 
-    }
-    
-    if (this.size[i] < this.size[j]) {
-      this.ids[i] = j; 
-      this.size[j] += this.size[i];
-    } else {
-      this.ids[j] = i;
-      this.size[i] += this.size[j]
-    }
-  }
-{% endhighlight %}
-
-### Quick Union Improvement 2: Path Compression
-
-This improvement modifies the findRoot method in QuickUnion to compress the path length. This could be done in two passes by first finding the root of p and then setting the value of each examined element to that root, which flattens the path. Or it could be done in one pass by setting every other examined element to point directly to its grandparent. This second way halves the path.
-
-The code below is the one pass option.
-
-{% highlight javascript %}
-  findRoot = (i) => {
-    while ( i != this.ids[i]) {
-      this.ids[i] = this.ids[this.ids[i]];
-      i = this.ids[i]
-    }
-    return i;
-  }
-{% endhighlight %}
-
-The combination of these two improvements take what was a quadratic, unscalable solution (the UnionFind class) to a linear solution. 
-
-FULL CODE HERE
-
-{% highlight javascript %}
-
-class WeightedQuickUnionWithPathCompression {
-
-  constructor(num) {
-      this.ids = [];
-      this.size = [];
-
-      for (let i = 0; i < num; i++){
-        this.ids.push(i)
-        this.size.push(0)
-      }
-    }
-
-  findRoot = (i) => {
-    while ( i != this.ids[i]) {
-      this.ids[i] = this.ids[this.ids[i]];
-      i = this.ids[i]
-    }
-    return i;
-  }
-
-  connected = (p, q) => {
-    return this.findRoot(p) === this.findRoot(q);
-  }
-
-
-  union = (p, q) => {
-    let i = this.findRoot(p);
-    let j = this.findRoot(q);
-
-    if ( i === j) {
-      return 
-    }
-    
-    if (this.size[i] < this.size[j]) {
-      this.ids[i] = j; 
-      this.size[j] += this.size[i];
-    } else {
-      this.ids[j] = i;
-      this.size[i] += this.size[j]
-    }
-  }
-}
+newIds.findRoot(2)
+// 8
 
 {% endhighlight %}
 
+Below the class are some examples I plugged into CodePen, starting with the original array. I first created a union between 2 and 5, and when the array is printed we can see that ids[2] points to its parent at 5. At ids[5] we see 5, meaning that 5 is the root. After a second union between 7 and 2, we see that both 2 and 7 point to their parent at 5. The union method always changes the root of the first argument to the root of the second argument, so 7's root changes from 7 to 2's root, which is 5. The last example is a union between 2 and 8. If we follow the array here we see that 2 points to its parent 5 which now points to 8, its new root. The union method changed 2's root to 8's root, which is 8 (I checked this below with the findRoot method).
 
-Working through the lessons and videos about this algorithm was difficult. It's been a while since I worked with higher-level math and wrapping my brain around the efficiency of these solutions took a long time. It helped to go through the solutions on CodePen and create visuals to better understand each improvement.
+This isn't the most efficient solution, either, as the trees can get too tall. It can be improved in a couple different ways, but I'm not going to cover that here. Stay tuned for those improvements in Part II!
+
+Working through the lessons and videos about this algorithm was difficult for me. It's been a while since I worked with higher-level math and wrapping my brain around the efficiency of these solutions and their logic took a long time. It helped to go through the solutions on CodePen and create visuals to better understand each improvement.
 
 Source:
 [Princeton University, Algorithms Part I, taught by Robert Sedgewick and Kevin Wayne](https://www.coursera.org/learn/algorithms-part1)
