@@ -110,7 +110,7 @@ For example, in the image below there are 2 multi-object components ([0, 3, 4] a
 
 ![quick union](/cautious-coder/assets/QuickUnionFinal.png)
 
-In the QuickUnion class most of the code from QuickFind is duplicated, with the biggest change being findRoot method. This method finds and returns the root of a tree at a given index. The root is where ids[i] is the same as the index i. The connected method uses findRoot to check if p and q are in the same component and the union method uses findRoot to join p and q by changing p's root to be the child of the root of q.
+Parts of the QuickUnion class are similar to QuickFind, but the addition and use of the findRoot method reflects QuickUnion's different approach to the problem. This method finds and returns the root of a tree at a given index. The root is where ids[i] is the same as the index i. The connected method uses findRoot to check if p and q are in the same component and the union method uses findRoot to join p and q by changing p's root to be the child of the root of q.
 
 {% highlight javascript %}
 class QuickUnion {
