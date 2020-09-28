@@ -1,3 +1,11 @@
+---
+layout: post
+title: Union Find Algorithm Part 2
+date: 2020-09-02 15:41:38 -0400
+author: Sarah
+---
+
+
 ### Quick Union Improvement 1: Weighted
 
 One way that the previous solution can be improved is by taking into account the size of the trees. With this improvement each instance of weighted quick union is initialized with a "size" array that tracks the size of each group. Then in the union method there is an if statement that checks which tree is larger before joining them. The smaller tree is always added to the bigger tree. 
