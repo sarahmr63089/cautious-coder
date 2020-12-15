@@ -3,6 +3,8 @@ layout: post
 title: Solving the House Robber Problem with Dynamic Programming
 date: 2020-12-11 15:41:38 -0400
 author: Sarah
+featured-image: 
+featured-image-alt: 
 ---
 
 Recently, I've been diving into dynamic programming with the help of this [video series](https://www.youtube.com/playlist?list=PLVrpF4r7WIhTT1hJqZmjP10nxsmrbRvlf) by Andrey Grehov. DP is a notoriously tricky problem-solving approach, but Grehov's method has helped clear things up considerably. To further cement the process, I've been trying to solve other DP problems that he doesn't cover in his course. One of these is this [House Robber](https://leetcode.com/problems/house-robber/) problem found on Leetcode. 
