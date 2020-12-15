@@ -3,7 +3,7 @@ layout: post
 title: Union Find Algorithm Part I
 date: 2020-09-01 15:41:38 -0400
 author: Sarah
-featured-image: QuickUnion.png
+image: After.png
 featured-image-alt: image
 ---
 Earlier this summer, I tried to balance an algorithms course and my bootcamp workload. I chose Princeton's Algorithms Part I with Robert Sedgewick and Kevin Wayne, which can be found on Coursera. Ultimately, that turned out to be too much to balance, but before I dropped the algorithms course I watched the videos on Union Find. This blog post (and Part II) works through the code presented in those lectures (originally written in Java, but I've written it out in Javascript for my own comfort). 

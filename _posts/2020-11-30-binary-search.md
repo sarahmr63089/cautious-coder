@@ -3,7 +3,7 @@ layout: post
 title: Binary Search
 date: 2020-11-30 15:41:38 -0400
 author: Sarah
-featured-image: After.png
+image: After.png
 featured-image-alt: after
 ---
 
