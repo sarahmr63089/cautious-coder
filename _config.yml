@@ -37,6 +37,8 @@ plugins:
 
 feed:
   posts_limit: 3
+  featured-image: true
+  featured-image-alt: true
 
 # Exclude from processing.
 # The following items will not be processed, by default.
