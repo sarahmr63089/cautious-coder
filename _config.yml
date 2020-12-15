@@ -22,19 +22,21 @@ future: true
 
 title: cautious coder
 # email: sarahrose63089@gmail.com
-description: >- # this means to ignore newlines until "baseurl:"
-  One archivist-turned-software-engineer's journey learning to code.
+description: One archivist-turned-software-engineer's journey learning to code.
 baseurl: "/cautious-coder" # the subpath of your site, e.g. /blog
 url: "sarahmr.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 #twitter_username: jekyllrb
 github_username:  sarahmr
 linkedin_username: sarah-rose-9935999a
+author: Sarah Rose
 
 # Build settings
 theme: minima
 plugins:
   - jekyll-feed
-  
+
+feed:
+  posts_limit: 3
 
 # Exclude from processing.
 # The following items will not be processed, by default.
