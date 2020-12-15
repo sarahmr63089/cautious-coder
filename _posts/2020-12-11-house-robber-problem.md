@@ -3,7 +3,7 @@ layout: post
 title: Solving the House Robber Problem with Dynamic Programming
 date: 2020-12-11 15:41:38 -0400
 author: Sarah
-featured-image: QuickUnion.png
+image: QuickUnion.png
 featured-image-alt: quick union
 ---
 
