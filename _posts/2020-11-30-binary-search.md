@@ -3,7 +3,7 @@ layout: post
 title: Binary Search
 date: 2020-11-30 15:41:38 -0400
 author: Sarah
-image: After.png
+image: /Users/sarahrose/Flatiron/cautious_coder/assets/After.png
 featured-image-alt: after
 ---
 
