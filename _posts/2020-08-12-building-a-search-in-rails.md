@@ -3,8 +3,7 @@ layout: post
 title: Building a Search in Rails
 date: 2020-08-12 15:41:38 -0400
 author: Sarah
-image: /Users/sarahrose/Flatiron/cautious_coder/assets/After.png
-featured-image-alt: after
+image: /Users/sarahrose/Flatiron/cautious_coder/assets/rails search.jpg
 ---
 Recently I was working on a Ruby on Rails project that allowed a user to create playlists. One page featured a list of all of the available songs and I wanted the user to be able to search by song title, artist name, or genre. The database already included tables for all three and the models had the appropriate relationships (songs belong to genre and artist, and genre and artist had many songs). Fortunately, I had previously put together a search using data from one table and could use that experience, but I was a bit apprehensive about searching through three tables.
 
