@@ -3,7 +3,7 @@ layout: post
 title: Binary Search
 date: 2020-11-30 15:41:38 -0400
 author: Sarah
-image: /Users/sarahrose/Flatiron/cautious_coder/assets/Binary-Search.png
+image: assets/Binary-Search.png
 ---
 
 Sometimes you have a sorted array and you want to know if a certain number is present in the array. Searching through an array is a lengthy process. Without knowing where an element is located you must check each element to see if it's the one you're looking for -- a search taking linear time O(n) where n is the number of elements. It's pretty easy to see that this gets out of hand when managing large arrays of data. 
