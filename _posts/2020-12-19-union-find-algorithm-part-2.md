@@ -77,7 +77,7 @@ WeightedQuickUnion {
 
 And a visual:
 
-![before45union](assets/before45union.png)
+![before 45 union](/cautious-coder/assets/before45union.png)
 
 Here we can see that there are 5 separate sets with roots of 0, 1, 4, 5, and 7. Seven is the largest tree with size 4. If we run two unions, one between 4 and 5 and the other between 1 and 7, we'll see the changes below.
 
@@ -116,7 +116,7 @@ WeightedQuickUnion {
 }
 {% endhighlight %}
 
-![endresult](assets/endresultWQU.png)
+![endresult](/cautious-coder/assets/endresultWQU.png)
 
 We can see that the smaller tree with root 1 was joined to the larger tree with root 7, making that tree grow to 7. We can continue improving this solution by adding path compression!
 
@@ -189,9 +189,9 @@ WeightedQuickUnionWithPathCompression {
   ]
 }
 
-{% endhightlight %}
+{% endhighlight %}
 
-![wqupcbefore49](assets/wqupcbefore49.png)
+![wqupcbefore49](/cautious-coder/assets/wqupcbefore49.png)
 
 Here we can see that we have 4 root ids, 3, 4, 6, and 8, with sizes 6, 2, 1, and 1, respectively. If we call union between the nodes 4 and 9 (the node numbers are the last line of text in the image and the index numbers in the array), this will join the tree with root 4 to the tree with root 3 and this will alter the id of node 9. Currently node 9 has an id of 0, but after we run the union method 9 will point to its grandparent 3 instead of 0, thereby compressing the path! Let's take a look:
 
@@ -214,9 +214,9 @@ WeightedQuickUnionWithPathCompression {
   ]
 }
 
-{% endhightlight %}
+{% endhighlight %}
 
-![wqupcafter49](assets/wqupcafter49.png)
+![wqupcafter49](/cautious-coder/assets/wqupcafter49.png)
 
 The combination of these two improvements take what was a quadratic, unscalable solution (the UnionFind class from part 1) to a linear solution! Check out my source for this series to get more details about uses for this algorithm and more detail about these improvements and the time complexity analysis.
 
