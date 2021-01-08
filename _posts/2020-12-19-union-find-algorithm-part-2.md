@@ -4,6 +4,7 @@ title: Union Find Algorithm Part 2
 date: 2020-12-19 15:41:38 -0400
 author: Sarah
 image: assets/endresultWQU.png
+excerpt: The second part of a two-part series on the Union Find Algorithm with code excerpts.
 ---
 
 It's been a while, but I'm finally posting the second half of the Union Find algorithm series! I ended the first section with the Quick Union solution. This blog will focus on two improvements to this solution, the weighted Quick Union and weighted Quick Union with Path Compression. 
