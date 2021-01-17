@@ -48,9 +48,9 @@ fetch('https://icanhazdadjoke.com/', {
 
 Here, I wrote the fetch with the appropriate headers and the API url. The fetch returned a promise, formatted as an HTTP response. This is formatted as json with the first then and the second both logs the response and changed the inner HTML to display the joke. The then method also returns a promise and takes callback functions as arguments.
 
-![Duvet Joke](/cautious_coder/assets/joke-duvet.png)
+![Duvet Joke](/cautious-coder/assets/joke-duvet.png)
 
-![Duvet Joke Log](/cautious_coder/assets/json-response-duvet.png)
+![Duvet Joke Log](/cautious-coder/assets/json-response-duvet.png)
 
 Now, let's take a look at a fetch written with async and await.
 
@@ -72,8 +72,9 @@ async function fetchJoke() {
 
 Here, the function "fetchJoke" is declared as an aync function. Async functions return promises and set up the expectation of an "await," which is not mandatory but often occurs. Within the function, the promise returned by the fetch is set to the variable "jokeData." This is where the "await" keyword is used. Await tells the code to pause here and wait for the fetch to be concluded before executing the next line of code, making this asynchronous code behave similarly to synchronous code. Await can only be used inside asynchronous functions where a promise is returned. Then "jokeData" is formatted as JSON data also using "await" as we need this formatted before the next line, and set to the variable "joke." Finally, the joke within the joke JSON is set as the inner HTML for "jokeDisplay." 
 
-![dad joke ruins](/cautious_coder/assets/dad-joke-ruins.jpg)  
-![dad joke ruins response](/cautious_coder/assets/json-response-ruins.png)
+![dad joke ruins](/cautious-coder/assets/dad-joke-ruins.jpg)  
+
+![dad joke ruins response](/cautious-coder/assets/json-response-ruins.png)
 
 
 As visible in the logs, both of these methods work just fine. The benefit with using async/await is readibility. It's much easier to understand the second method without the nested then methods. 
